@@ -1,5 +1,6 @@
 <template>
   <div>
+      <h1>栏目管理</h1>
       <!-- 按钮开始 -->
       <el-button type="primary" size="small" @click="toAddHandler">添加</el-button>
       <el-button type="danger" size="small">批量删除</el-button>
@@ -8,11 +9,11 @@
       <el-table :data="category">
           <el-table-column prop="id" label="编号"></el-table-column>
           <el-table-column prop="name" label="项目名称"></el-table-column>
-          <el-table-column prop="number" label="序号"></el-table-column>
+          <el-table-column prop="num" label="序号"></el-table-column>
           <el-table-column prop="parentId" label="父栏目"></el-table-column>
           <el-table-column label="操作">
               <template v-slot="slot">
-                  <a class="el-icon-delete" href="" @click.prevent = "toDeleteHandler(slot.row.name)"></a>
+                  <a class="el-icon-delete" href="" @click.prevent = "toDeleteHandler(slot.row.id)"></a>
                   <a class="el-icon-edit-outline" href="" @click.prevent = "toUpdateHandler(slot.row)"></a>
               </template>
           </el-table-column>
@@ -23,13 +24,12 @@
             :title="title"
             :visible.sync="visible"
             width="60%">
-            测试：{{form}}
             <el-form :model="form" label-width="80">
                 <el-form-item label="栏目名称">
                     <el-input v-model="form.name"/>
                 </el-form-item>
                 <el-form-item label="序号">
-                    <el-input v-model="form.number"/>
+                    <el-input v-model="form.num"/>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -71,20 +71,28 @@ export default {
                 this.category = response.data;
             })
         },
-        toDeleteHandler(name){
+        toDeleteHandler(id){
           this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.$message({
-            type: 'success',
-            message: '删除“' + name +"”的信息成功！"
+            //调用后台接口完成删除操作
+            let url = "http://localhost:6677/category/deleteById?id=" +id;
+            request.get(url).then((response)=>{
+                //刷新数据
+                this.loadData();
+                //提示结果
+                this.$message({
+                type: 'success',
+                message: response.message
           });
+            })
         })
         },
         toUpdateHandler(row){
             this.title = "修改栏目信息"
+            this.form = row;
             this.visible = true;
         },
         closeModalHandler(){
@@ -93,6 +101,9 @@ export default {
         toAddHandler(){
             this.title = "添加栏目信息"
             this.visible = true;
+            this.form={
+
+            }
         }
 
     },

@@ -6,7 +6,7 @@
        <el-button type="primary" size="small" @click="toAddHandler"> 添加</el-button>
          <el-button type="danger"  size="small">批量删除</el-button>
          <!-- 按钮结束 -->
-<!-- 表格 -->
+         <!-- 表格 -->
          <el-table :data="products" >
              <el-table-column  type="selection" prop="id" label="编号"></el-table-column>
              <el-table-column prop="name" label="产品名称"></el-table-column>
@@ -16,7 +16,7 @@
                <el-table-column  label="操作">
                    <template v-slot="slot">
                         <a class="el-icon-delete" href="" @click.prevent="toDeleteHander(slot.row.id)"></a>
-                        <a class="el-icon-edit-outline" href="" @click.prevent="toUpadataHander(slot.row)"></a> 
+                        <a class="el-icon-edit-outline" href="" @click.prevent = "toUpdateHandler(slot.row)"></a>
                         <a  href="" @click.prevent="toDeleteHander(slot.row.id)">详情</a>
                    </template>
                </el-table-column>
@@ -29,7 +29,6 @@
   :visible.sync="visible"
   width="60%"
  >
- 测试：{{form}}  ==================== {{categorys}}
  <el-form :model="form" lablel-width="80px" >
    <el-form-item label="产品名称">
      <el-input v-model="form.name">
@@ -76,8 +75,7 @@ export default {
             visible:false,
             products:[],
             form:{
-              type:"categorys",
-              type:"product"
+              
             }
         }
     },
@@ -128,21 +126,29 @@ request({
       },
       
         toDeleteHander(id){
-            this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+           this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.$message({
-            type: 'success',
-            message: '删除成功!' +   "编号为："+id
+            //调用后台接口完成删除操作
+            let url = "http://localhost:6677/product/deleteById?id=" +id;
+            request.get(url).then((response)=>{
+                //刷新数据
+                this.loadData();
+                //提示结果
+                this.$message({
+                type: 'success',
+                message: response.message
           });
+            })
         })
-          },
+       },
       
-        toUpdateHander(row){
+        toUpdateHandler(row){
           this.title = "修改产品信息";
             this.visible = true;
+            this.form = row;
         },
         closeModalHandler(){
        this.visible = false;
@@ -152,6 +158,8 @@ request({
         toAddHandler(){
           this.title = "录入产品信息";
             this.visible = true;
+            this.form = {
+            }
 
         }
 
