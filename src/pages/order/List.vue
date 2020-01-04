@@ -93,6 +93,8 @@ export default {
     data(){
         return{
             orders:[],
+            // 设置默认页面为第一个页面
+             activeName: 'first'
             
         }
     },
@@ -101,7 +103,10 @@ export default {
       this.loadData();
     },
    methods:{
-    
+      //默认页面设置的方法
+       handleClick(tab, event) {
+        console.log(tab, event);
+      },
       loadData(){
         let url ="http://localhost:6677/order/findAll"
       request.get(url).then((response)=>{
