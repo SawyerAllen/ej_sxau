@@ -108,7 +108,7 @@ export default {
         console.log(tab, event);
       },
       loadData(){
-        let url ="http://localhost:6677/order/findAll"
+        let url ="http://localhost:6677/order/findAll";
       request.get(url).then((response)=>{
         //将查询结果设置到customer中,this指向外部函数的this
          this.orders = response.data;
@@ -126,5 +126,7 @@ export default {
 
 
 <style scoped>
-
+.el-table >>> .cell{
+   font-size: 12px;
+}
 </style>
