@@ -105,7 +105,7 @@ request.get(url).then((response)=>{
         
       })     
     },
-     pageChangeHandler(page){
+     pageChangeHandler(page){//分页方法
             //params的页数改变为插件中的当前页
             this.params.page = page-1;
             //加载
@@ -134,6 +134,7 @@ request.get(url).then((response)=>{
       form:{
         type:"comment"
       },
+      //设置页码
       params:{
                 page:0,
                 pageSize:10
