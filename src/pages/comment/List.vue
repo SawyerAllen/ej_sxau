@@ -134,7 +134,6 @@ request.get(url).then((response)=>{
       form:{
         type:"comment"
       },
-      //设置页码
       params:{
                 page:0,
                 pageSize:10
