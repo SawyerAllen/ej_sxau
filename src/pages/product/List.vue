@@ -8,7 +8,8 @@
          <!-- 按钮结束 -->
          <!-- 表格 -->
          <el-table :data="products" >
-             <el-table-column  type="selection" prop="id" label="编号"></el-table-column>
+           <el-table-column type="selection"></el-table-column>
+             <el-table-column prop="id" label="编号"></el-table-column>
              <el-table-column prop="name" label="产品名称"></el-table-column>
              <el-table-column prop="price" label="价格"></el-table-column>
              <el-table-column prop="description" label="描述"></el-table-column>

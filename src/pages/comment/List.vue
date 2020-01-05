@@ -19,14 +19,13 @@
     </el-table>
     <!-- /表格结束 -->
     <!-- 分页开始 -->
-    <!-- <el-pagination layout="prev, pager, next" :total="50"></el-pagination> -->
+    <el-pagination layout="prev, pager, next" :total="50" @current-change="pageChangeHandler"></el-pagination> 
     <!-- /分页结束 -->
     <!-- 模态框 -->
     <el-dialog
       title="录入评论者信息"
       :visible.sync="visible"
       width="60%">
-      {{form}}
       <span>
         <el-form :model="form" label-width="80px">
             <el-form-item label="评论时间">
@@ -106,6 +105,12 @@ request.get(url).then((response)=>{
         
       })     
     },
+     pageChangeHandler(page){
+            //params的页数改变为插件中的当前页
+            this.params.page = page-1;
+            //加载
+            this.loadData();
+        },
     toUpdateHandler(row){//修改方法
     //在模态框显示当前行信息
       this.form=row;
@@ -128,7 +133,11 @@ request.get(url).then((response)=>{
       comments:[],
       form:{
         type:"comment"
-      }
+      },
+      params:{
+                page:0,
+                pageSize:10
+            }
     }
   },
   created(){
