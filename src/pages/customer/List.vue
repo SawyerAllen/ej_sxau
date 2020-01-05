@@ -88,7 +88,7 @@ request.get(url).then((response)=>{
       //提示消息
       this.$message({
         type:"success",
-        message:request.message
+        message:response.message
       })
     })
     },
