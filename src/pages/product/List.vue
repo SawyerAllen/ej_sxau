@@ -29,6 +29,7 @@
   :visible.sync="visible"
   width="60%"
  >
+ {{form}}
  <el-form :model="form" lablel-width="80px" >
    <el-form-item label="产品名称">
      <el-input v-model="form.name">
@@ -39,7 +40,7 @@
      </el-input>
    </el-form-item>
    <el-form-item label="所属栏目">
-      <el-select v-model="value" placeholder="请选择">
+      <el-select v-model="form.categoryId" placeholder="请选择">
     <el-option
       v-for="item in categorys"
       :key="item.id"
@@ -48,8 +49,8 @@
     </el-option>
   </el-select>
    </el-form-item>
-   <el-form-item label="介绍">
-     <el-input  v-model="form.description">
+   <el-form-item label="描述">
+     <el-input type="textarea" v-model="form.description">
      </el-input>
    </el-form-item>
  </el-form>
@@ -82,10 +83,10 @@ export default {
     created(){
       //在页面加载出来的时候加载数据
       this.loadData();
-      this.loadData1();
+      this.loadCategory();
     },
    methods:{
-     loadData1(){
+     loadCategory(){
         let url ="http://localhost:6677/category/findAll"
       request.get(url).then((response)=>{
         //将查询结果设置到customer中,this指向外部函数的this
