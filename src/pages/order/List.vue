@@ -1,89 +1,136 @@
 <template>
-   <div>
-       <el-tabs v-model="activeName" @tab-click="handleClick">
-    <el-tab-pane label="所有订单" name="first">
-       <el-table :data="orders.list" >
-             <el-table-column prop="id" label="订单编号"></el-table-column>
-             <el-table-column prop="orderTime" label="下单时间"></el-table-column>
-             <el-table-column prop="total" label="总价"></el-table-column>
-             <el-table-column prop="status" label="状态"></el-table-column>
-             <el-table-column prop="customerId" label="顾客id"></el-table-column>
-             <el-table-column  label="操作">
-                 <template v-slot="slot">
-                        <a  href="" @click.prevent="functionname(slot.row.id)">详情</a>
-                   </template>
-             </el-table-column>
-       </el-table>
-   </el-tab-pane>
-    <el-tab-pane label="待支付" name="second">
-       <el-table :data="orders.list" >
-             <el-table-column prop="id" label="订单编号"></el-table-column>
-             <el-table-column prop="orderTime" label="下单时间"></el-table-column>
-             <el-table-column prop="total" label="总价"></el-table-column>
-             <el-table-column prop="status" label="状态"></el-table-column>
-             <el-table-column prop="customerId" label="顾客id"></el-table-column>
-      </el-table>
-    </el-tab-pane>
-    <el-tab-pane label="待派送" name="third">
-       <el-table :data="orders.list" >
-             <el-table-column prop="id" label="订单编号"></el-table-column>
-             <el-table-column prop="orderTime" label="下单时间"></el-table-column>
-             <el-table-column prop="total" label="总价"></el-table-column>
-             <el-table-column prop="status" label="状态"></el-table-column>
-             <el-table-column prop="customerId" label="顾客id"></el-table-column>
-             <el-table-column  label="操作">
-                 <template v-slot="slot">
-                        <a  href="" @click.prevent="functionname(slot.row.id)">详情</a>
-                   </template>
-             </el-table-column>
-      </el-table>
-    </el-tab-pane>
-   <el-tab-pane label="待接单" name="fourth">
-      <el-table :data="orders.list" >
-             <el-table-column prop="id" label="订单编号"></el-table-column>
-             <el-table-column prop="orderTime" label="下单时间"></el-table-column>
-             <el-table-column prop="total" label="总价"></el-table-column>
-             <el-table-column prop="status" label="状态"></el-table-column>
-             <el-table-column prop="customerId" label="顾客id"></el-table-column>
-             <el-table-column  label="操作">
-                 <template v-slot="slot">
-                        <a  href="" @click.prevent="functionname(slot.row.id)">详情</a>
-                   </template>
-             </el-table-column>
-      </el-table>
-   </el-tab-pane>
-   <el-tab-pane label="待服务" name="fivth">
-       <el-table :data="orders.list" >
-             <el-table-column prop="id" label="订单编号"></el-table-column>
-             <el-table-column prop="orderTime" label="下单时间"></el-table-column>
-             <el-table-column prop="total" label="总价"></el-table-column>
-             <el-table-column prop="status" label="状态"></el-table-column>
-             <el-table-column prop="customerId" label="顾客id"></el-table-column>
-             <el-table-column prop="waiterId" label="员工id"></el-table-column>
-      </el-table>
-   </el-tab-pane>
-   <el-tab-pane label="待确认" name="sixth">
-      <el-table :data="orders.list" >
-             <el-table-column prop="id" label="订单编号"></el-table-column>
-             <el-table-column prop="orderTime" label="下单时间"></el-table-column>
-             <el-table-column prop="total" label="总价"></el-table-column>
-             <el-table-column prop="status" label="状态"></el-table-column>
-             <el-table-column prop="customerId" label="顾客id"></el-table-column>
-             <el-table-column prop="waiterId" label="员工id"></el-table-column>
-      </el-table>
-   </el-tab-pane>
-   <el-tab-pane label="已完成" name="seventh">
-      <el-table :data="orders.list" >
-             <el-table-column prop="id" label="订单编号"></el-table-column>
-             <el-table-column prop="orderTime" label="下单时间"></el-table-column>
-             <el-table-column prop="total" label="总价"></el-table-column>
-             <el-table-column prop="status" label="状态"></el-table-column>
-             <el-table-column prop="customerId" label="顾客id"></el-table-column>
-             <el-table-column prop="waiterId" label="员工id"></el-table-column>
-      </el-table>
-   </el-tab-pane>
-  </el-tabs>
-  <!-- 分页开始 -->
+    <div>
+        <!-- 表格开始 -->
+    <el-tabs v-model="activeName" type="card" @tab-click="handleClick" >
+        <el-tab-pane label="所有订单" name=" " >
+            <el-table :data="orders.list">
+                <el-table-column prop="id" label="编号"></el-table-column>
+                <el-table-column width="200" prop="orderTime" label="下单时间"></el-table-column>
+                <el-table-column prop="total" label="总价"></el-table-column>
+                <el-table-column prop="status" label="状态"></el-table-column>
+                <el-table-column prop="customerId" label="顾客ID"></el-table-column>
+                <el-table-column prop="waiterId" label="员工ID"></el-table-column>
+                <el-table-column prop="addressId" label="地址ID"></el-table-column>
+                <el-table-column fixed="right" label="操作">
+                    <template v-slot="slot">
+                        <!-- 获取当前行的信息 -->
+                        <a class="el-icon-delete" href="" @click.prevent = "toDeleteHandler(slot.row.id)"></a>
+                        <a class="el-icon-edit-outline" href="" @click.prevent = "toUpdateHandler(slot.row)"></a>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </el-tab-pane>
+        <el-tab-pane label="待支付" name="待支付">
+            <el-table :data="orders.list">
+                <el-table-column prop="id" label="编号"></el-table-column>
+                <el-table-column width="200" prop="orderTime" label="下单时间"></el-table-column>
+                <el-table-column prop="total" label="总价"></el-table-column>
+                <el-table-column prop="status" label="状态"></el-table-column>
+                <el-table-column prop="customerId" label="顾客ID"></el-table-column>
+                <el-table-column prop="waiterId" label="员工ID"></el-table-column>
+                <el-table-column prop="addressId" label="地址ID"></el-table-column>
+                <el-table-column fixed="right" label="操作">
+                    <template v-slot="slot">
+                        <!-- 获取当前行的信息 -->
+                        <a class="el-icon-delete" href="" @click.prevent = "toDeleteHandler(slot.row.id)"></a>
+                        <a class="el-icon-edit-outline" href="" @click.prevent = "toUpdateHandler(slot.row)"></a>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </el-tab-pane>
+        <el-tab-pane label="待派单" name="待派单">
+            <el-table :data="orders.list">
+                <el-table-column prop="id" label="编号"></el-table-column>
+                <el-table-column width="200" prop="orderTime" label="下单时间"></el-table-column>
+                <el-table-column prop="total" label="总价"></el-table-column>
+                <el-table-column prop="status" label="状态"></el-table-column>
+                <el-table-column prop="customerId" label="顾客ID"></el-table-column>
+                <el-table-column prop="waiterId" label="员工ID"></el-table-column>
+                <el-table-column prop="addressId" label="地址ID"></el-table-column>
+                <el-table-column fixed="right" label="操作">
+                    <template v-slot="slot">
+                        <!-- 获取当前行的信息 -->
+                        <a class="el-icon-delete" href="" @click.prevent = "toDeleteHandler(slot.row.id)"></a>
+                        <a class="el-icon-edit-outline" href="" @click.prevent = "toUpdateHandler(slot.row)"></a>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </el-tab-pane>
+        <el-tab-pane label="待接单" name="待接单">
+            <el-table :data="orders.list">
+                <el-table-column prop="id" label="编号"></el-table-column>
+                <el-table-column width="200" prop="orderTime" label="下单时间"></el-table-column>
+                <el-table-column prop="total" label="总价"></el-table-column>
+                <el-table-column prop="status" label="状态"></el-table-column>
+                <el-table-column prop="customerId" label="顾客ID"></el-table-column>
+                <el-table-column prop="waiterId" label="员工ID"></el-table-column>
+                <el-table-column prop="addressId" label="地址ID"></el-table-column>
+                <el-table-column fixed="right" label="操作">
+                    <template v-slot="slot">
+                        <!-- 获取当前行的信息 -->
+                        <a class="el-icon-delete" href="" @click.prevent = "toDeleteHandler(slot.row.id)"></a>
+                        <a class="el-icon-edit-outline" href="" @click.prevent = "toUpdateHandler(slot.row)"></a>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </el-tab-pane>
+        <el-tab-pane label="待服务" name="待服务">
+            <el-table :data="orders.list">
+                <el-table-column prop="id" label="编号"></el-table-column>
+                <el-table-column width="200" prop="orderTime" label="下单时间"></el-table-column>
+                <el-table-column prop="total" label="总价"></el-table-column>
+                <el-table-column prop="status" label="状态"></el-table-column>
+                <el-table-column prop="customerId" label="顾客ID"></el-table-column>
+                <el-table-column prop="waiterId" label="员工ID"></el-table-column>
+                <el-table-column prop="addressId" label="地址ID"></el-table-column>
+                <el-table-column fixed="right" label="操作">
+                    <template v-slot="slot">
+                        <!-- 获取当前行的信息 -->
+                        <a class="el-icon-delete" href="" @click.prevent = "toDeleteHandler(slot.row.id)"></a>
+                        <a class="el-icon-edit-outline" href="" @click.prevent = "toUpdateHandler(slot.row)"></a>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </el-tab-pane>
+        <el-tab-pane label="待确认" name="待确认">
+            <el-table :data="orders.list">
+                <el-table-column prop="id" label="编号"></el-table-column>
+                <el-table-column width="200" prop="orderTime" label="下单时间"></el-table-column>
+                <el-table-column prop="total" label="总价"></el-table-column>
+                <el-table-column prop="status" label="状态"></el-table-column>
+                <el-table-column prop="customerId" label="顾客ID"></el-table-column>
+                <el-table-column prop="waiterId" label="员工ID"></el-table-column>
+                <el-table-column prop="addressId" label="地址ID"></el-table-column>
+                <el-table-column fixed="right" label="操作">
+                    <template v-slot="slot">
+                        <!-- 获取当前行的信息 -->
+                        <a class="el-icon-delete" href="" @click.prevent = "toDeleteHandler(slot.row.id)"></a>
+                        <a class="el-icon-edit-outline" href="" @click.prevent = "toUpdateHandler(slot.row)"></a>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </el-tab-pane>
+        <el-tab-pane label="已完成" name="已完成">
+            <el-table :data="orders.list">
+                <el-table-column prop="id" label="编号"></el-table-column>
+                <el-table-column width="200" prop="orderTime" label="下单时间"></el-table-column>
+                <el-table-column prop="total" label="总价"></el-table-column>
+                <el-table-column prop="status" label="状态"></el-table-column>
+                <el-table-column prop="customerId" label="顾客ID"></el-table-column>
+                <el-table-column prop="waiterId" label="员工ID"></el-table-column>
+                <el-table-column prop="addressId" label="地址ID"></el-table-column>
+                <el-table-column fixed="right" label="操作">
+                    <template v-slot="slot">
+                        <!-- 获取当前行的信息 -->
+                        <a class="el-icon-delete" href="" @click.prevent = "toDeleteHandler(slot.row.id)"></a>
+                        <a class="el-icon-edit-outline" href="" @click.prevent = "toUpdateHandler(slot.row)"></a>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </el-tab-pane>
+    </el-tabs>
+        <!-- 表格结束 -->
+        <!-- 分页开始 -->
         <el-pagination
             layout="prev, pager, next" :total="orders.total" @current-change="pageChangeHandler">
         </el-pagination>
@@ -125,9 +172,13 @@ import querystring from 'querystring'
 export default {    
     //用于存放网页中需要调用的方法
     methods:{
-         handleClick(tab, event) {
-        console.log(tab, event);
-      },
+        handleClick(tab, event) {
+            console.log(tab, event);
+            console.log('---------------------------'+this.activeName);
+            this.$set(this.params,'status',this.activeName)
+            this.loadData();
+        },
+        
         
         pageChangeHandler(page){
             //params的页数改变为插件中的当前页
@@ -136,7 +187,9 @@ export default {
             this.loadData();
         },
         loadData(){
+
             let url = "http://localhost:6677/order/queryPage"
+            
         request({
             url,
             method:"post",
@@ -201,19 +254,13 @@ export default {
         closeModalHandler(){
         this.visible = false;
     },
-        toAddHandler(){
-            this.form = {
-                type:"order"
-            }
-            this.visible = true;
-        }
+    
     },
     //用于存放要向网页中显示的数据
     data(){
         //变量放在data中
         return {
-            activeName: 'first',
-            
+            activeName:' ',
             visible:false,
             orders:{},
             form:{
@@ -221,7 +268,8 @@ export default {
             },
             params:{
                 page:0,
-                pageSize:10
+                pageSize:10,
+                status:''
             },
         }
     },
@@ -236,7 +284,5 @@ export default {
 </script>
 
 <style scoped>
-    .el-table >>> .cell{
-   font-size: 12px;
-}
+    
 </style>
