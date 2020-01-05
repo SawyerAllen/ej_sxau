@@ -12,7 +12,7 @@
              <el-table-column prop="name" label="产品名称"></el-table-column>
              <el-table-column prop="price" label="价格"></el-table-column>
              <el-table-column prop="description" label="描述"></el-table-column>
-             <el-table-column prop="categoryId" label="所属产品"></el-table-column>
+             <el-table-column prop="categoryId" label="所属栏目"></el-table-column>
                <el-table-column  label="操作">
                    <template v-slot="slot">
                         <a class="el-icon-delete" href="" @click.prevent="toDeleteHander(slot.row.id)"></a>
