@@ -13,6 +13,7 @@
             <el-table-column prop="address" label="地址"></el-table-column>
             <el-table-column prop="telephone" label="手机号"></el-table-column>
             <el-table-column prop="customerId" label="顾客ID"></el-table-column>
+            <!-- 顾客ID显示还不成熟git -->
             <el-table-column label="操作">
                 <template v-slot="slot">
                  <a href="" @click.prevent="toUpdateHandler(slot.row)" class="el-icon-edit"></a>
