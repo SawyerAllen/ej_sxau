@@ -15,7 +15,7 @@
             <el-table-column prop="customerId" label="顾客ID"></el-table-column>
             <el-table-column label="操作">
                 <template v-slot="slot">
-                    <a href="" @click.prevent="toUpdateHandler(slot.row)" class="el-icon-edit"></a>
+                 <a href="" @click.prevent="toUpdateHandler(slot.row)" class="el-icon-edit"></a>
                  <a href="" @click.prevent="toDeleteHandler(slot.row.id)" class="el-icon-delete"></a>
                 </template>
             </el-table-column>
@@ -35,8 +35,8 @@
   width="60%"
   
   >
-  
-  ------------ {{form}}
+
+
     <el-form :modul="form" label-width="80px">
         <el-form-item label="省">
           <el-input v-model="form.province"></el-input>
@@ -63,11 +63,7 @@
           <el-input v-model="form.telephone"></el-input>
         </el-form-item>
       </el-form>
-      <el-form :modul="form" label-width="80px">
-        <el-form-item label="顾客ID">
-          <el-input v-model="form.customerId"></el-input>
-        </el-form-item>
-      </el-form>
+     
       <span slot="footer" class="dialog-footer">
     <el-button @click="closeModalHandler">取 消</el-button>
     <el-button type="primary" @click="submitHandler">确 定</el-button>
@@ -152,8 +148,8 @@ export default {
         return{
             visible:false,
             addresses:[],
-            form:{
-             
+            value:[],
+            form:{ 
             }
    
         }
