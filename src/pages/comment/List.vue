@@ -79,9 +79,9 @@ request.get(url).then((response)=>{
       this.loadData();
       //提示消息
       this.$message({
-        type:"success",
-        message:request.message
-      })
+            type: 'success',
+            message: response.message
+          })
     })
     },
     //删除操作
@@ -98,9 +98,9 @@ request.get(url).then((response)=>{
           this.loadData();
           //提示结果
             this.$message({
-            type: 'success',
-            message: response.message
-          });
+        type:"success",
+        message:response.message
+      })
         })
         
       })     
