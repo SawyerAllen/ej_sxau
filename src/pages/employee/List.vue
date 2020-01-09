@@ -17,8 +17,8 @@
             <el-table-column width="200" prop="bankCard" label="银行卡号"></el-table-column>
             <el-table-column fixed="right" label="操作">
               <template v-slot="slot"><!--获取操作数据-->
-              <a href="" @click.prevent="toDeleteHandler(slot.row.id)">删除</a>
-              <a href="" @click.prevent="toUpdataHandler(slot.row)">修改</a>
+              <a href="" @click.prevent="toDeleteHandler(slot.row.id)" class="el-icon-delete"></a>
+              <a href="" @click.prevent="toUpdataHandler(slot.row)" class="el-icon-edit"></a>
               </template>
             </el-table-column>
         </el-table>

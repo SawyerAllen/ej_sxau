@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      title: '家政预约服务云平台',
+      title: '晋宝农商销售云平台',
       logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
     }
   }

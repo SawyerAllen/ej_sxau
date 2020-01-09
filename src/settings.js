@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: '家政预约服务云平台',
+  title: '晋宝农商销售云平台',
 
   /**
    * @type {boolean} true | false

@@ -51,7 +51,7 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: { title: '产品主页', icon: 'dashboard' }
     }]
   },
   {
@@ -74,7 +74,7 @@ export const constantRoutes = [
         path: 'list',
         name: 'employeeList',
         component: () => import('@/pages/employee/List'),
-        meta: { title: '员工管理', icon: 'user' }
+        meta: { title: '派送员管理', icon: 'user' }
       }
     ]
   },
@@ -84,13 +84,13 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/example/table',
     name: 'Example',
-    meta: { title: '系统配置', icon: 'example' },
+    meta: { title: '农产品', icon: 'example' },
     children: [
       {
         path: 'table',
         name: 'categoryList',
         component: () => import('@/pages/category/List'),
-        meta: { title: '栏目管理', icon: 'table' }
+        meta: { title: '产品类型', icon: 'table' }
       },
       {
         path: 'tree',
@@ -120,7 +120,7 @@ export const constantRoutes = [
         path: 'list',
         name: 'commentList',
         component: () => import('@/pages/comment/List'),
-        meta: { title: '评论管理', icon: 'user' }
+        meta: { title: '评论管理', icon: 'form' }
       }
     ]
   },

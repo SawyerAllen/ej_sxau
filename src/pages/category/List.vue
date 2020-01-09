@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h1>栏目管理</h1>
+      <h1>产品类型</h1>
       <!-- 按钮开始 -->
       <el-button type="primary" size="small" @click="toAddHandler">添加</el-button>
       <el-button type="danger" size="small">批量删除</el-button>
@@ -8,13 +8,13 @@
       <!-- 表格开始 -->
       <el-table :data="category">
           <el-table-column prop="id" label="编号"></el-table-column>
-          <el-table-column prop="name" label="项目名称"></el-table-column>
+          <el-table-column prop="name" label="所属类型"></el-table-column>
           <el-table-column prop="num" label="序号"></el-table-column>
-          <el-table-column prop="parentId" label="父栏目"></el-table-column>
+          <el-table-column prop="parentId" label="仓库编号"></el-table-column>
           <el-table-column label="操作">
               <template v-slot="slot">
                   <a class="el-icon-delete" href="" @click.prevent = "toDeleteHandler(slot.row.id)"></a>
-                  <a class="el-icon-edit-outline" href="" @click.prevent = "toUpdateHandler(slot.row)"></a>
+                  <a class="el-icon-edit" href="" @click.prevent = "toUpdateHandler(slot.row)"></a>
               </template>
           </el-table-column>
       </el-table>
@@ -25,7 +25,7 @@
             :visible.sync="visible"
             width="60%">
             <el-form :model="form" label-width="80">
-                <el-form-item label="栏目名称">
+                <el-form-item label="产品类型">
                     <el-input v-model="form.name"/>
                 </el-form-item>
                 <el-form-item label="序号">
@@ -91,7 +91,7 @@ export default {
         })
         },
         toUpdateHandler(row){
-            this.title = "修改栏目信息"
+            this.title = "修改产品信息"
             this.form = row;
             this.visible = true;
         },
@@ -99,7 +99,7 @@ export default {
             this.visible = false;
         },
         toAddHandler(){
-            this.title = "添加栏目信息"
+            this.title = "添加产品信息"
             this.visible = true;
             this.form={
 
